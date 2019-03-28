@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if current_user.username in admin %}
+    <a href="{{ url_for('addpkg') }}">Add Package</a>
+    {% endif %}
+	<h1>Hi, {{ current_user.username }}!</h1>
+	{% for post in posts %}
+	{% if post.package==current_user.phone %}
+		<h4> You have a package from {{ post.courier }}</h4><br>
+	{% endif %}
+	{% endfor %}
+{% endblock %}

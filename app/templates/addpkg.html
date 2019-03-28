@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Add Package</h1>
+        <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <p>
+                        {{ form.package.label }}<br>
+                        {{ form.package(size=32) }}<br>
+                        {% for error in form.package.errors %}
+                        <span style="color:red;">[{{ error }}]</span>
+                        {% endfor %}
+                </p>
+                <p>
+                        {{ form.courier.label }}<br>
+                        {{ form.courier }}<br>
+                        {% for error in form.courier.errors %}
+                        <span style="color:red;">[{{ error }}]</span>
+                        {% endfor %}
+                </p>
+                <p>{{ form.submit() }}</p>
+                <p>
+                        {% for p in pkgs %}
+                        {% if p.courier!='None' %}
+                        {{ p.package }}
+                        {{ p.courier }}<br>
+                        {% endif %}
+                        {% endfor %}
+        </form>
+{% endblock %}

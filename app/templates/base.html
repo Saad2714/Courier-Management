@@ -1,0 +1,38 @@
+<html>
+	<head>
+		{% if title %}
+		<title>{{title}} - IIITB Package System </title>
+		{% else %}
+		<title>Welcome to IIITB</title>
+		{% endif %}
+	</head>
+	<center><body>
+		<div>IIITB Parcel collection system: 
+			<a href="{{ url_for('index') }}">Home</a>
+			{% if current_user.is_anonymous %}
+			<a href="{{ url_for('login') }}">Login</a>
+			{% else %}
+			<a href="{{url_for('logout') }}">Logout</a>
+			{% endif %}
+		</div>
+		<hr>
+		<br>
+		<br>
+		<br>
+		<img src="logo.jpg">
+		<br>
+		<br>
+		<br>
+		{% with messages=get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{message}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+		{% block content %}{% endblock %}
+	</body>
+    </center>
+</html>
